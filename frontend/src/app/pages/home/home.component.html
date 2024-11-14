@@ -1,0 +1,33 @@
+<div class="flex flex-column gap-2">
+    <a routerLink="user-form/new" class="p-button font-bold w-max">
+        Crear Nuevo Usuario
+    </a>
+    <div class="flex gap-3 flex-wrap">
+        @for (user of users; track user) {
+        <p-card header="Informacion Personal" subheader="Id: {{user.id}}" [style]="{ width: '360px' }">
+            <ng-template pTemplate="header">
+                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+            </ng-template>
+            <p>
+                Nombres: {{user.name}}
+            </p>
+            <p>
+                Apellidos: {{user.lastname}}
+            </p>
+            <p>
+                Edad: {{user.age}}
+            </p>
+            <ng-template pTemplate="footer">
+                <div class="flex gap-1 mt-1">
+                    <p-button label="Borrar" severity="secondary" (onClick)="deleteUser(user.id)" />
+                    <a routerLink="user-form/{{user.id}}" class="p-button font-bold">
+                        Editar
+                    </a>
+                </div>
+            </ng-template>
+        </p-card>
+        }@empty {
+        <p>No se han registrado usuarios</p>
+        }
+    </div>
+</div>
